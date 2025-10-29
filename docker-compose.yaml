@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app          
+      - /app/node_modules
+    depends_on:
+      - backend
+    command: npm start
+
+  backend:
+    build: ./backend
+    container_name: backend_c
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./backend:/app           
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/idea_app
+    depends_on:
+      - mongo
+    command: npm run dev
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_c
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
