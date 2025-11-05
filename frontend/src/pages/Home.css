@@ -1,0 +1,194 @@
+
+.home-page {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+.left-content {
+  flex: 1; 
+  padding: 50px; 
+  overflow-y: auto;
+  background: rgb(145, 183, 244); 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+.right-image {
+  flex: 1; 
+  height: 100%;
+}
+
+.right-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+}
+
+
+.home-container {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+
+.mood-selection {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+
+.mood-btn {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.mood-btn:hover {
+  transform: scale(1.1);
+}
+
+.mood-btn.active {
+  background: #ff595e;
+}
+
+
+.mood-content {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.quotes-section,
+.music-section {
+  background: #f5f7fa;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.quotes-section h2,
+.music-section h2 {
+  color: #333;
+}
+
+.quote {
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.music-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.music-section li a {
+  text-decoration: none;
+  color: #6c63ff;
+}
+
+.music-section li a:hover {
+  text-decoration: underline;
+}
+.right-image {
+  flex: 1;
+  background-image: url('../assets/homepage.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+
+.diary-card {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+.diary-card h2 {
+  margin-bottom: 15px;
+  color: #22232d;
+}
+
+.diary-card textarea {
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.diary-card button {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.diary-card button:hover {
+  background: #5548d8;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.motivation-message {
+  margin-top: 30px;
+  text-align: center;
+  color: #444;
+}
+
+.motivation-message h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.motivation-message p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.big-quote {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0b0d9c;
+  margin-top: 20px;
+}

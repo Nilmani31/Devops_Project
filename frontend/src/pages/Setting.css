@@ -1,0 +1,122 @@
+.settings-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #a0c4ff, #caf0f8);
+  gap: 100px;
+  padding: 40px;
+}
+
+.left-side img {
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+
+.settings-card {
+  width: 380px;
+  height: 420px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.settings-card .front,
+.settings-card .back {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  backface-visibility: hidden;
+  padding: 30px 25px;
+  transition: transform 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-card.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.settings-card.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 5px 0;
+  color: #444;
+  font-size: 16px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #0077b6;
+}
+
+.setting-button,
+.flip-button {
+  background: #0077b6;
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  width: 100%;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.setting-button:hover,
+.flip-button:hover {
+  background: #023e8a;
+  transform: scale(1.02);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 20px;
+  color: #333;
+}
