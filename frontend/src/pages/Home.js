@@ -3,7 +3,7 @@ import "./Home.css";
 import axios from "axios";
 
 
-const moods = ["Happy", "Sad", "Relaxed", "Angry"];
+const moods = ["Happy", "Sad", "Motivated", "Angry"];
 
 
 

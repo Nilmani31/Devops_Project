@@ -32,7 +32,7 @@ const AddQuote = () => {
     <div className="add-quote-page">
       
       <div className="form-left">
-        <h2 className="quote-title">✨ Share Your Motivation ✨</h2>
+        <h2 className="quote-title">✨ Share Your Thoughts ✨</h2>
         <form className="quote-form" onSubmit={handleSubmit}>
           <label htmlFor="mood">Mood</label>
           <select
@@ -43,9 +43,8 @@ const AddQuote = () => {
           >
             <option value="">-- Select Your Mood --</option>
             <option value="Happy">😊 Happy</option>
-            <option value="Calm">😌 Calm</option>
+            <option value="Angry">😠 Angry</option>
             <option value="Sad">😢 Sad</option>
-            <option value="Excited">🤩 Excited</option>
             <option value="Motivated">💪 Motivated</option>
           </select>
 
