@@ -11,7 +11,7 @@ const AddQuote = () => {
   const handleSubmit =  async (e) => {
     e.preventDefault();
     if (!mood || !quote) {
-      alert("Please fill in both fields!");
+      alert("✍️ Please fill in both mood and quote before submitting!");
       return;
     }
     try{
@@ -20,11 +20,11 @@ const AddQuote = () => {
         quote : quote,
     },{ withCredentials: true });
     } catch (error) {
-      alert("something went wrong!");;
+      alert("❌ Oops! We couldn't save your quote. Please try again!");
     }
     setMood("");
     setQuote("");
-    alert("Quote added successfully!");
+    alert("✨ Awesome! Your quote has been added successfully! Keep inspiring!");
   
   };
 

@@ -16,7 +16,7 @@ const Home = () => {
   const handleSaveDiary = async(e) => {
     e.preventDefault();
     if (diaryEntry.trim() === "") {
-      alert("Write something before saving!");
+      alert("✏️ Write something meaningful before saving!");
       return;
     }
     try{
@@ -24,9 +24,9 @@ const Home = () => {
         content : diaryEntry,
     },{ withCredentials: true });  
     } catch (error) {
-      alert("something went wrong!");;
+      alert("❌ Couldn't save your diary entry. Please try again!");;
     }
-    alert("Your diary entry has been saved! (Check console)");
+    alert("📔 Perfect! Your diary entry has been saved successfully! Keep expressing yourself!");
     setDiaryEntry("");
   };
 

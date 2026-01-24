@@ -11,6 +11,21 @@ const Settings = () => {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
+  // Generate random emojis for decoration
+  const generateEmojis = () => {
+    const emojis = ['☁️', '⭐', '✨', '🌟', '💫'];
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      emoji: emojis[Math.floor(Math.random() * emojis.length)],
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 0.5,
+    }));
+  };
+
+  const [emojis] = useState(generateEmojis());
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -29,14 +44,14 @@ const Settings = () => {
       setUserData(data);
     } catch (error) {
       console.error(error);
-      alert("Unable to load user data");
+      alert("😕 Oops! We couldn't load your profile. Please refresh the page and try again!");
     } finally {
       setLoading(false);
     }
   };
 
   const handleEmailChange = async () => {
-    if (!newEmail) return alert("Please enter a new email");
+    if (!newEmail) return alert("📧 Please enter a new email address first!");
     setUpdating(true);
     try {
       const res = await fetch("http://localhost:4000/api/users/update-email", {
@@ -47,19 +62,19 @@ const Settings = () => {
       });
 
       if (!res.ok) throw new Error("Failed to update email");
-      alert(`✅ Email updated successfully to: ${newEmail}`);
+      alert(`🎉 Perfect! Your email has been updated to ${newEmail}. You're all set!`);
       setNewEmail("");
       fetchUserData();
     } catch (error) {
       console.error(error);
-      alert("Error updating email");
+      alert("❌ Hmm, something went wrong updating your email. Please try again or contact support!");
     } finally {
       setUpdating(false);
     }
   };
 
   const handlePasswordChange = async () => {
-    if (!newPassword) return alert("Please enter a new password");
+    if (!newPassword) return alert("🔐 Please enter a new password to proceed!");
     setUpdating(true);
     try {
       const res = await fetch("http://localhost:4000/api/users/update-password", {
@@ -70,20 +85,38 @@ const Settings = () => {
       });
 
       if (!res.ok) throw new Error("Failed to update password");
-      alert("✅ Password updated successfully!");
+      alert("🔐 Excellent! Your password has been updated successfully! 🎊");
       setNewPassword("");
     } catch (error) {
       console.error(error);
-      alert("Error updating password");
+      alert("❌ Oh no! We couldn't update your password. Please check your connection and try again!");
     } finally {
       setUpdating(false);
     }
   };
 
-  if (loading) return <div className="loading">Loading...</div>;
+  if (loading) return <div className="loading">⭐ Loading...</div>;
 
   return (
     <div className="settings-container">
+      {/* Floating emojis background */}
+      <div className="emoji-background">
+        {emojis.map((item) => (
+          <div
+            key={item.id}
+            className="floating-emoji"
+            style={{
+              left: `${item.left}%`,
+              top: `${item.top}%`,
+              animation: `float ${item.duration}s linear ${item.delay}s infinite`,
+              fontSize: Math.random() > 0.5 ? '2em' : '3em',
+            }}
+          >
+            {item.emoji}
+          </div>
+        ))}
+      </div>
+
       <div className="left-side">
         <img src={SettingsImage} alt="Decorative" />
       </div>
@@ -91,20 +124,20 @@ const Settings = () => {
       <div className={`settings-card ${isFlipped ? "flipped" : ""}`}>
        
         <div className="front">
-          <h2>Your Profile</h2>
-          <p><strong>Email:</strong> {userData?.email}</p>
-          <p><strong>Username:</strong> {userData?.username}</p>
+          <h2>✨ Your Profile ✨</h2>
+          <p><strong>📧 Email:</strong> {userData?.email}</p>
+          <p><strong>👤 Username:</strong> {userData?.username}</p>
           <button className="flip-button" onClick={() => setIsFlipped(true)}>
-            Edit Settings
+            ⚙️ Edit Settings
           </button>
         </div>
 
        
         <div className="back">
-          <h2>Update Settings</h2>
+          <h2>⚙️ Update Settings ⚙️</h2>
 
           <div className="form-group">
-            <label>New Email</label>
+            <label>📧 New Email</label>
             <input
               type="email"
               placeholder="Enter new email"
@@ -117,12 +150,12 @@ const Settings = () => {
               onClick={handleEmailChange}
               disabled={updating}
             >
-              Change Email
+              ✓ Change Email
             </button>
           </div>
 
           <div className="form-group">
-            <label>New Password</label>
+            <label>🔐 New Password</label>
             <input
               type="password"
               placeholder="Enter new password"
@@ -135,12 +168,12 @@ const Settings = () => {
               onClick={handlePasswordChange}
               disabled={updating}
             >
-              Change Password
+              ✓ Change Password
             </button>
           </div>
 
           <button className="flip-button" onClick={() => setIsFlipped(false)}>
-            Back to Profile
+            ← Back to Profile
           </button>
         </div>
       </div>

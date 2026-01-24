@@ -20,7 +20,7 @@ const RegisterPage = () => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      alert("🔐 Passwords do not match! Please check and try again.");
       return;
     }
     try {
@@ -29,10 +29,10 @@ const RegisterPage = () => {
         password : formData.password,
         username : formData.name
       });
-      alert("Registration successful! Please log in.");
+      alert("🎉 Registration successful! Welcome aboard! Please log in to continue.");
       navigate("/home");
     } catch (error) {
-      alert("something went wrong!");;
+      alert("❌ Oops! Something went wrong during registration. Please try again!");;
     }
   };
   return (

@@ -22,16 +22,16 @@ function Login() {
     });
     const data = await res.json();
     if (res.ok ) {
-      alert('Successfully logged in');
+      alert('🎉 Welcome back! You have successfully logged in!');
       navigate("/home");
        
     } else {
-      alert(data.message || "Login failed");
+      alert(data.message || "❌ Login failed. Please check your email and password!");
     }
 
   } catch (err) {
     console.error(err);
-    alert("Something went wrong!");
+    alert("⚠️ Something went wrong! Please check your connection and try again!");
   }
 };
 
