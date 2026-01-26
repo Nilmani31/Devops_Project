@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USER = "chamsha123"  // change this
+        DOCKER_HUB_USER = "chamsha123"      // change this if needed
         FRONTEND_IMAGE = "project-frontend"
         BACKEND_IMAGE = "project-backend"
         IMAGE_TAG = "latest"
@@ -12,14 +12,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "📦 Pulling code from GitHub..."
-                checkout scm
+                // Explicitly clone the repo into workspace
+                git branch: 'main', url: 'https://github.com/Nilmani31/Devops_Project.git'
             }
         }
 
-        stage('Build and Tag Images') {
+        stage('Build and Tag Docker Images') {
             steps {
                 echo "⚙️ Building Docker images..."
-                // Build Docker images using docker-compose in workspace
+                // Build images using docker-compose
                 sh 'docker compose build'
 
                 echo "🏷️ Tagging images for Docker Hub..."
@@ -30,7 +31,7 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Push Images to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
@@ -58,6 +59,7 @@ pipeline {
 
         stage('Check Running Containers') {
             steps {
+                echo "🔍 Listing running containers..."
                 sh 'docker ps'
             }
         }
@@ -65,10 +67,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Deployment successful! Images pushed to Docker Hub and containers running.'
+            echo '✅ Deployment successful! Images pushed to Docker Hub and containers are running.'
         }
         failure {
-            echo '❌ Deployment failed!'
+            echo '❌ Deployment failed! Check logs above for details.'
         }
     }
 }
