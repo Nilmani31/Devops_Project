@@ -9,10 +9,11 @@ pipeline {
     }
 
     stages {
+        // You can remove Clean Workspace or keep it but skip deleting the repo
         stage('Clean Workspace') {
             steps {
-                echo "🧹 Cleaning workspace..."
-                deleteDir() // optional if you want a clean workspace
+                echo "🧹 Optional: cleaning workspace..."
+                // deleteDir()   <-- REMOVE this if using job SCM to avoid deleting the repo
             }
         }
 
