@@ -1,7 +1,20 @@
+# Use a Node base image
 FROM node:18-alpine
-WORKDIR '/app'
-COPY package*.json .
+
+# Set working directory (no quotes)
+WORKDIR /app
+
+# Copy package files
+COPY package*.json /app/
+
+# Install dependencies
 RUN npm install
-COPY . .
-EXPOSE 4000
-CMD ["npm", "run", "dev"]
+
+# Copy the rest of the backend code
+COPY . /app/
+
+# Expose port
+EXPOSE 5000
+
+# Start the app
+CMD ["npm", "start"]
