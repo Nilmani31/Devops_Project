@@ -16,6 +16,7 @@ echo "Deploying backend container..."
 docker run -d -p 4000:4000 --name backend_c \
   --link mongo_c:mongodb \
   -e MONGO_URI="mongodb://mongodb:27017/idea_app" \
+  -e SESSION_SECRET="Chamsha@31#" \
   chamsha123/project-backend:latest
 
 
