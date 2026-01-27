@@ -16,6 +16,30 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Nilmani31/Devops_Project.git'
             }
         }
+        // Terraform stages
+        stage('Terraform Init') {
+            steps {
+                dir("${WORKSPACE}") {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir("${WORKSPACE}") {
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                dir("${WORKSPACE}") {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
 
         
 
