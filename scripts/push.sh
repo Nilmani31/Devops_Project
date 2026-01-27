@@ -8,9 +8,9 @@ echo "Logging in to Docker Hub..."
 echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 
 echo "Pushing frontend image..."
-docker push chamsha123/chamsha123/project-frontend:latest
+docker push chamsha123/project-frontend:latest
 
 echo "Pushing backend image..."
-docker push chamsha123/chamsha123/project-backend:latest
+docker push chamsha123/project-backend:latest
 
 echo "Images pushed successfully!"
