@@ -15,7 +15,9 @@ docker run -d -p 27017:27017 --name  mongo_c mongo:6.0
 echo "Deploying backend container..."
 docker run -d -p 4000:4000 --name backend_c \
   --link mongo_c:mongodb \
+  -e MONGO_URI="mongodb://mongodb:27017/idea_app" \
   chamsha123/project-backend:latest
+
 
 echo "Deploying frontend container..."
 docker run -d -p 3000:3000 --name frontend_c \
