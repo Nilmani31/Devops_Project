@@ -37,6 +37,14 @@ pipeline {
                 }
             }
         }
+        stage('Deploy Locally') {
+            steps {
+                dir("${WORKSPACE}") {
+                    sh 'chmod +x ./scripts/deploy.sh'
+                    sh './scripts/deploy.sh'
+                }
+            }
+        }
 
         
 
