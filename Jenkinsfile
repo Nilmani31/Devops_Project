@@ -61,11 +61,14 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Locally') {
+        stage('Deploy via Ansible') {
             steps {
                 dir("${WORKSPACE}") {
-                    sh 'chmod +x ./scripts/deploy.sh'
-                    sh './scripts/deploy.sh'
+                    // Make sure your playbook has execute permissions
+                    sh 'chmod +x ./ansible/deploy_idea_app.yml'
+                    
+                    // Run the playbook with the correct inventory
+                    sh 'ansible-playbook -i ./ansible/inventory.ini ./ansible/deploy_idea_app.yml'
                 }
             }
         }

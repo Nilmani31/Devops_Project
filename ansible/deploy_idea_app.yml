@@ -1,0 +1,76 @@
+---
+- name: Deploy Idea App with Docker
+  hosts: idea_ec2
+  become: yes
+  vars:
+    mongo_port: 27017
+    backend_port: 4000
+    frontend_port: 3000
+    backend_image: "chamsha123/project-backend:latest"
+    frontend_image: "chamsha123/project-frontend:latest"
+    mongo_container: "mongo_c"
+    backend_container: "backend_c"
+    frontend_container: "frontend_c"
+    session_secret: "Chamsha@31#"
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Start and enable Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add ubuntu to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Stop old containers
+      shell: docker stop {{ mongo_container }} {{ backend_container }} {{ frontend_container }} || true
+      ignore_errors: yes
+
+    - name: Remove old containers
+      shell: docker rm {{ mongo_container }} {{ backend_container }} {{ frontend_container }} || true
+      ignore_errors: yes
+
+    - name: Deploy MongoDB
+      docker_container:
+        name: "{{ mongo_container }}"
+        image: mongo:6.0
+        state: started
+        ports:
+          - "{{ mongo_port }}:27017"
+
+    - name: Deploy Backend
+      docker_container:
+        name: "{{ backend_container }}"
+        image: "{{ backend_image }}"
+        state: started
+        ports:
+          - "{{ backend_port }}:4000"
+        env:
+          MONGO_URI: "mongodb://{{ mongo_container }}:27017/idea_app"
+          SESSION_SECRET: "{{ session_secret }}"
+        links:
+          - "{{ mongo_container }}:mongo"
+
+    - name: Deploy Frontend
+      docker_container:
+        name: "{{ frontend_container }}"
+        image: "{{ frontend_image }}"
+        state: started
+        ports:
+          - "{{ frontend_port }}:3000"
+        links:
+          - "{{ backend_container }}:backend"

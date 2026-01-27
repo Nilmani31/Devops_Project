@@ -32,7 +32,7 @@ EOF
       type        = "ssh"
       user        = "ubuntu"
       private_key = file("/var/lib/jenkins/.ssh/kserver.pem")
-      host        = "3.108.2.120"
+      host        = "15.206.207.145"
     }
   }
 
