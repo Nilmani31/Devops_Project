@@ -38,7 +38,7 @@ mongoose
   cookie: { secure: false } 
 }));
 app.get('/', (req, res) => {
-  res.send('Backend is running!');
+  res.send('Backend is running!!');
 });
 
 
