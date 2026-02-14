@@ -24,7 +24,7 @@ const RegisterPage = () => {
       return;
     }
     try {
-       await axios.post('http://localhost:4000/api/users/register', {
+       await axios.post('http://15.206.207.145:4000/api/users/register', {
         email : formData.email,
         password : formData.password,
         username : formData.name
