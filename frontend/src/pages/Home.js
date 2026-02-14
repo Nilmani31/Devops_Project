@@ -86,7 +86,7 @@ const Home = () => {
             <h2>✨ Welcome to Your Mood Journal ✨</h2>
             <p>
               Select a mood to discover uplifting music, inspirational quotes, 
-              and write down your feelings. !! 
+              and write down your feelings.
             </p>
             <p className="big-quote">
               "Your emotions are valid. Let's explore them together."
