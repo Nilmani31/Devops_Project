@@ -60,7 +60,7 @@ function Login() {
         <button className="login-button" type="submit">Login</button>
       </form>
       <div className="login-link" onClick={() => navigate("/register")}>
-        Don't have an account? Register here
+        Don't have an account? Register
       </div>
     </div>
 
