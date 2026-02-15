@@ -45,7 +45,7 @@ const RegisterPage = () => {
       <div className="register-form-section">
         <div className="register-card">
           <h2>Create Your Account</h2>
-          <p>Join us make you days more special!</p>
+          <p>for test!</p>
           <form className="register-form" onSubmit={handleSubmit}>
             <input
               className="register-input"
